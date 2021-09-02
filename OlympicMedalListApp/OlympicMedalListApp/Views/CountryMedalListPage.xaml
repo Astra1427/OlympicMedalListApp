@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OlympicMedalListApp.Views.CountryMedalListPage"
+             Title="Country Medal List"
+             >
+    <Grid>
+        <StackLayout Padding="8">
+            
+            <ListView ItemsSource="{Binding Countries}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" HasUnevenRows="False" RowHeight="50" RefreshCommand="{Binding RefreshCommand}" SelectionMode="None">
+
+                <ListView.Header>
+
+                    <Grid ColumnDefinitions="40,60,*,40,40,50">
+                        <Label Grid.Column="0" Text="Rank" VerticalOptions="Center" Grid.ColumnSpan="1"/>
+                        <Label Grid.Column="1" Text="Country/Area" VerticalOptions="Center" Grid.ColumnSpan="2"/>
+                        <Label Grid.Column="3" Text="Gold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="4" Text="Silver" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="5" Text="Bronze" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="35,40,150,40,40,50">
+                                <Label Grid.Column="0" Text="{Binding No}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="{Binding RankColor}" FontSize="{Binding RankSize}"/>
+                                <Image Grid.Column="1" HorizontalOptions="Start" Source="{Binding FlagImageSource}" Aspect="AspectFit" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Name}" VerticalOptions="Center"/>
+                                <Label Grid.Column="3" Text="{Binding GoldNumber}" VerticalOptions="Center" HorizontalOptions="End"/>
+                                <Label Grid.Column="4" Text="{Binding SilverNumber}" VerticalOptions="Center" HorizontalOptions="End"/>
+                                <Label Grid.Column="5" Text="{Binding BronzeNumber}" VerticalOptions="Center" HorizontalOptions="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" IsVisible="false"/>
+    </Grid>
+</ContentPage>

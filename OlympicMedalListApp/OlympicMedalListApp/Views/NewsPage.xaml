@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OlympicMedalListApp.Views.NewsPage"
+             x:Name="page">
+    <Grid>
+        <StackLayout Padding="8">
+
+            <ListView ItemsSource="{Binding NewsList}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" HasUnevenRows="True" RefreshCommand="{Binding RefreshCommand}" SelectionMode="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Frame HasShadow="True" CornerRadius="3" Padding="0" BackgroundColor="Transparent">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.NewsTapCommand,Source={x:Reference page}}" CommandParameter="{Binding ID}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="*,10">
+                                    <Label Grid.Column="0" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Title}" TextColor="Gold" FontAttributes="Bold" FontSize="20"/>
+                                                <Span Text="&#10;"/>
+                                                <Span Text="{Binding NewsContentPreview}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <!--<Image Grid.Column="2" HorizontalOptions="Start" Source="{Binding CoverImageSource}" Aspect="AspectFit" VerticalOptions="Center"/>-->
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" IsVisible="false"/>
+    </Grid>
+</ContentPage>

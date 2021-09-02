@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OlympicMedalListApp.Views.NewsDetailPage"
+             >
+    <Grid>
+        <StackLayout>
+            <Label BackgroundColor="#3087EB" Text="{Binding aNews.Title}" HorizontalTextAlignment="Center" FontSize="24" TextColor="White" Padding="0,8"/>
+            <ScrollView>
+                <Label Text="{Binding aNews.NewsContentPreview}" Padding="8" TextColor="Black"/>
+                <!--<rtf:SfRichTextEditor ReadOnly="True" Text="{Binding News.NewsContent}"/>-->
+                <!--<Editor Parent="8" Text="{Binding DisNewsContent, Mode=OneWay, Converter={StaticResource }}" MinWidthRequest="250" HorizontalOptions="Fill" VerticalOptions="StartAndExpand" IsEnabled="False"/>-->
+            </ScrollView>
+        </StackLayout>
+        <ActivityIndicator IsRunning="{Binding IsRefreshing}" IsVisible="{Binding IsRefreshing}" VerticalOptions="Center" HorizontalOptions="Center"/>
+    </Grid>
+</ContentPage>
